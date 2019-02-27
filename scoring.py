@@ -3,18 +3,8 @@ import math
 
 tba = tbapy.TBA('FsRCtOkFxHEy0mshFOrOXEfru18CkuRl4iKY4XFUsCM12w1BLawDoDVNrTWLHq6N')
 
-# team = tba.team('frc2056')
-# events = tba.events(2018)
-# event_code_list = []
-
-# for event in events:
-# 	if event.week == 4:
-# 		event_code_list.append(event.key)
-
 week = 6
 year = 2017
-# team = 2056
-# team_key = 'frc' + str(team)
 team_list = [4613, 558, 1885, 1305, 503, 68]
 
 
@@ -87,13 +77,6 @@ for team in team_list:
 			rank = team_status.qual["ranking"]["rank"]
 			total_rp = math.floor(team_status.qual["ranking"]["sort_orders"][0] * team_status.qual["ranking"]["matches_played"])
 			
-			# print(team_status)
-			# print("Rank: ")
-			# print(rank)
-			# print()
-			# print("Total  RP: ")
-			# print(total_rp)
-			# print()
 			print(event.name)
 			print("TEAM " + str(team))
 			print("Points from rank: " + str(getScoreFromRank(rank)))
