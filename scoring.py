@@ -15,6 +15,7 @@ def getScoreFromRank(rank):
     elif (rank >= 2 and rank <= 3):
         score = 12
     elif (rank >= 4 and rank <= 8):
+        score = 6
     elif (rank >= 9 and rank <= 12):
         score = 3
     elif (rank >= 13 and rank <= 16):
