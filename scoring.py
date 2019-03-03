@@ -5,7 +5,7 @@ tba = tbapy.TBA('FsRCtOkFxHEy0mshFOrOXEfru18CkuRl4iKY4XFUsCM12w1BLawDoDVNrTWLHq6
 
 week = 1
 year = 2019
-team_list = [7538]
+team_list = [610, 5687, 1577, 1648, 1511, 3646]
 
 
 def getScoreFromRank(rank):
@@ -87,29 +87,33 @@ for team in team_list:
 	events = tba.team_events(team, year)
 	for event in events:
 		if event.week == (week - 1):
-			team_ff_score = 0
-			team_status = tba.team_status(team, event.key)
-			rank = team_status.qual["ranking"]["rank"]
-			total_rp = math.floor(team_status.qual["ranking"]["sort_orders"][0] * team_status.qual["ranking"]["matches_played"])
-			
 			print(event.name)
 			print("TEAM " + str(team))
-			print("Points from rank: " + str(getScoreFromRank(rank)))
-			team_ff_score += getScoreFromRank(rank)
-			print("Points from RP: " + str(total_rp))
-			team_ff_score += total_rp
-			print("Points from elimination results: " + str(getScoreFromElimResults(team_status)))
-			team_ff_score += getScoreFromElimResults(team_status)
 
-			event_awards = tba.event_awards(event.key)
-			for award in event_awards:
-				# print(award["recipient_list"][0])
-				for recipient in award["recipient_list"]:
-					# print(recipient["team_key"])
-					if (recipient["team_key"] == team_key):
-						award_type = award["award_type"]
-						# print("Points from awards: " + str(getScoreFromAward(award_type)))
-						team_ff_score += getScoreFromAward(award_type)
+			team_ff_score = 0
+			if (tba.team_status(team, event.key) == None):
+				print("NEED MANUAL SCORING")
+			elif (tba.team_status(team, event.key).qual == None):
+				print("HAS NOT PLAYED YET")
+			else: 
+				team_status = tba.team_status(team, event.key)
+				rank = team_status.qual["ranking"]["rank"]
+				total_rp = math.floor(team_status.qual["ranking"]["sort_orders"][0] * team_status.qual["ranking"]["matches_played"])
+
+				print("Points from rank: " + str(getScoreFromRank(rank)))
+				team_ff_score += getScoreFromRank(rank)
+				print("Points from RP: " + str(total_rp))
+				team_ff_score += total_rp
+				print("Points from elimination results: " + str(getScoreFromElimResults(team_status)))
+				team_ff_score += getScoreFromElimResults(team_status)
+
+				event_awards = tba.event_awards(event.key)
+				for award in event_awards:
+					for recipient in award["recipient_list"]:
+						if (recipient["team_key"] == team_key):
+							award_type = award["award_type"]
+							# print("Points from awards: " + str(getScoreFromAward(award_type)))
+							team_ff_score += getScoreFromAward(award_type)
 
 			print("FF SCORE: " + str(team_ff_score))
 			print()
