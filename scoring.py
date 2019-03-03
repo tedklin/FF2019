@@ -5,7 +5,7 @@ tba = tbapy.TBA('FsRCtOkFxHEy0mshFOrOXEfru18CkuRl4iKY4XFUsCM12w1BLawDoDVNrTWLHq6
 
 week = 1
 year = 2019
-team_list = [330, 1023, 1369, 319, 1102, 1318]
+team_list = [7538]
 
 
 def getScoreFromRank(rank):
@@ -25,9 +25,15 @@ def getScoreFromRank(rank):
 
 def getScoreFromElimResults(team_status):
 	score = 0
-	level = team_status.playoff["level"]
-	status = team_status.playoff["status"]
-	if (level == 'f' and status == 'won'):
+	if (team_status.playoff != None):
+		level = team_status.playoff["level"]
+		status = team_status.playoff["status"]
+	else:
+		level = 'not picked'
+
+	if (level == 'not picked'):
+		score = 0
+	elif (level == 'f' and status == 'won'):
 		score = 30
 	elif (level == 'f' and status == 'eliminated'):
 		score = 20
