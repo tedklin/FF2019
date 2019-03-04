@@ -5,7 +5,7 @@ tba = tbapy.TBA('FsRCtOkFxHEy0mshFOrOXEfru18CkuRl4iKY4XFUsCM12w1BLawDoDVNrTWLHq6
 
 week = 1
 year = 2019
-team_list = [610, 5687, 1577, 1648, 1511, 3646]
+team_list = [33, 2910, 1690, 3847, 3538, 1629]
 
 
 def getScoreFromRank(rank):
@@ -47,32 +47,32 @@ def getScoreFromElimResults(team_status):
 def getScoreFromAward(award_type):
     score = 0;
     if (award_type == 0):
-        score = 42  # chairmans
-        print("Award: Chairmans | Points: " + str(42))
+        score = 42
+        print("Award: Chairmans | Points: " + str(score))
     elif (award_type == 3):
-        score = 8  # woodie flowers
-        print("Award: Woodie Flowers | Points: " + str(8))
+        score = 8 
+        print("Award: Woodie Flowers | Points: " + str(score))
     elif (award_type == 9):
-        score = 36  # engineering inspiration
-        print("Award: Engineering Inspiration | Points: " + str(36))
+        score = 36
+        print("Award: Engineering Inspiration | Points: " + str(score))
     elif (award_type == 10):
-        score = 20  # rookie all-star
-        print("Award: Rookie All-Star | Points: " + str(20))
+        score = 20
+        print("Award: Rookie All-Star | Points: " + str(score))
     elif (award_type == 15):
-        score = 15  # rookie inspiration
-        print("Award: Rookie Inspiration | Points: ") + str(15)
+        score = 15 
+        print("Award: Rookie Inspiration | Points: " + str(score))
     elif (award_type == 14):
-        score = 5  # highest rookie seed
-        print("Award: Highest Rookie Seed | Points: " + str(5))
+        score = 5
+        print("Award: Highest Rookie Seed | Points: " + str(score))
     elif (award_type == 13):
-        score = 5  # 
-        print("Award: Judges | Points: " + str(5))
+        score = 5
+        print("Award: Judges | Points: " + str(score))
     elif (award_type == 16 or award_type == 17 or award_type == 20 or award_type == 21 or award_type == 29 or award_type == 71):
-        score = 15  # robot-based awards
-        print("Award: Robot-based awards | Points: " + str(15))
+        score = 15
+        print("Award: Robot-based award | Points: " + str(score))
     elif (award_type == 4):
-        score = 4  # deans list
-        print("Award: Deans List | Points: " + str(4))
+        score = 4
+        print("Award: Deans List | Points: " + str(score))
     return score
 
 total_ff_score = 0
@@ -112,7 +112,6 @@ for team in team_list:
                     for recipient in award["recipient_list"]:
                         if (recipient["team_key"] == team_key):
                             award_type = award["award_type"]
-                            # print("Points from awards: " + str(getScoreFromAward(award_type)))
                             team_ff_score += getScoreFromAward(award_type)
 
             print("FF SCORE: " + str(team_ff_score))
